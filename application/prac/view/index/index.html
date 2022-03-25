@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h1>练习主页</h1>
+    <table>
+        {volist name='data' id='v'}
+        <tr>
+            <td>{$v.id}</td><td>{$v.institute}</td><td>{$v.school_id}</td>
+            <td>{$v.name}</td><td>{$v.exam_id}</td><td>{$v.password}</td>
+        </tr>
+        {/volist}
+    </table>
+</body>
+</html>

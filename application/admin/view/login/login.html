@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台登录 - 未来商城</title>
+	<link rel="stylesheet" href="__STATIC__/admin/css/style.css"/>
+	<script src="__STATIC__/admin/js/jquery.min.js"></script>
+</head>
+<body class="login">
+<div class="top">
+	<h1 class="left">未来商城 <span>后台管理系统</span></h1>
+</div>
+<div class="box">
+	<h1>欢迎访问后台</h1>
+	<form method="post" action="{:url('Login/dologin')}">
+		<table>
+			<tr><th width="80">用户名：</th><td><input class="input" type="text" name="nickname" required /></td></tr>
+			<tr><th>密　码：</th><td><input class="input" type="password" name="password" required /></td></tr>
+			<tr><th>验证码：</th><td><input class="input" type="text" name="captcha" required /></td></tr>
+			<tr><td> </td><td><img src="{:captcha_src()}" onclick="this.src='{:captcha_src()}'" /></td></tr>
+			<tr><td> </td><td><input class="login_btn" type="submit" value="登录" /></td></tr>
+		</table>
+	</form>
+</div>
+</body>
+</html>

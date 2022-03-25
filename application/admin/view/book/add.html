@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>未来商城 - 后台管理系统</title>
+	<link rel="stylesheet" href="__STATIC__/admin/css/style.css"/>
+	<script src="__STATIC__/index/js/jquery.min.js"></script>
+</head>
+<body>
+{include file="public/top"/}
+<div class="main">
+	<div class="menu left">
+		<div class="box">
+			<div class="head"><i></i><div>管理菜单</div></div>
+			<ul><li><a href="{:url('admin/admin')}">后台首页</a></li>
+				<li><a href="{:url('book/add')}" id="Goods_add">商品添加</a></li>
+				<li><a href="all.html" id="Goods_index">商品列表</a></li>
+				<li><a href="#" id="Category_add">分类添加</a></li>
+				<li><a href="#" id="Category_index">分类列表</a></li>
+				<li><a href="#" id="Recycle_index">回收站</a></li>
+				<li><a href="#" id="User_index">会员管理</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="item"><div class="title">商品添加</div>
+<div class="top-button">
+	选择商品分类：<select id="#category">
+		<option value="0">未分类</option>
+		<option value="14" selected>图书</option><option value="15" >— 音像</option><option value="62" >— — 音乐</option><option value="63" >— — 影视</option><option value="64" >— — 游戏</option><option value="16" >— IT类</option><option value="17" >— — PHP书籍</option><option value="18" >— — JAVA书籍</option><option value="19" >— — MySQL书籍</option><option value="34" >— — C语言书籍</option><option value="49" >— — 网页书籍</option><option value="35" >— 少儿</option><option value="36" >— — 少儿英语</option><option value="37" >— — 少儿文学</option><option value="38" >— 管理</option><option value="39" >— — 经济</option><option value="40" >— — 金融</option><option value="41" >— — 投资</option><option value="42" >— 生活</option><option value="43" >— — 旅游</option><option value="44" >— — 运动</option><option value="45" >— 艺术</option><option value="46" >— — 摄影</option><option value="47" >— — 设计</option><option value="48" >— — 绘画</option><option value="54" >家具</option><option value="55" >手机</option><option value="56" >服装</option><option value="57" >家用电器</option><option value="58" >电脑、办公</option><option value="59" >运动户外</option><option value="60" >家具、厨具</option>	</select>
+	<a href="#" class="light">商品列表</a>
+	<a href="#">添加分类</a>
+</div>
+<div class="list auto">
+	<form method="post" enctype="multipart/form-data" action="{:url('book/add')}">
+	<table class="t2 t4">
+		<tr><th>图书名称：</th><td><input type="text" name="bookname" class="big" required ></td></tr>
+		<tr><th>作者：</th><td><input type="text" name="author" class="big" required ></td></tr>
+		<tr><th>出版社：</th><td><input type="text" name="press" class="big" required ></td></tr>
+		<tr><th>出版日期：</th><td><input type="text" name="pubdate" class="big" required ></td></tr>
+		<tr><th>价格：</th><td><input type="text" name="price" class="big" required ></td></tr>
+		<tr><th>图书编号：</th><td><input type="text" name="ISBN" class="big" required ></td></tr>		
+		<tr><th>上传图片：</th><td><input type="file" name="picture" /></td></tr>
+	</table>
+	<div class="editor">
+		<link href="__STATIC__/admin/js/umeditor/themes/default/css/umeditor.min.css" rel="stylesheet">
+		<script src="__STATIC__/admin/js/umeditor/umeditor.config.js"></script>
+		<script src="__STATIC__/admin/js/umeditor/umeditor.min.js"></script>
+	<script>
+	$(function(){
+		//载入在线编辑器
+		UM.getEditor("myEditor",{
+		"imageUrl":"#", //图片上传提交地址
+		"imagePath":"#"  //图片显示地址
+		});
+	});
+	</script>
+		<script type="text/plain" id="myEditor" name="introduction"><p>请在此处输入图书内容简介。</p></script>
+	</div>
+	<div class="btn">
+		<input type="submit" value="添加图书">		
+	</div>
+	</form>
+	</div>
+	</div>
+	</div>
+</div>
+<script>
+	$("#Goods_add").addClass("curr");
+</script>
+</body>
+</html>

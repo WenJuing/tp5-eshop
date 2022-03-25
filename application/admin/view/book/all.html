@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>未来商城 - 后台管理系统</title>
+	<link rel="stylesheet" href="__STATIC__/admin/css/style.css"/>
+	<script src="__STATIC__index/js/jquery.min.js"></script>
+</head>
+<body>
+{include file="public/top"/}
+<div class="main">
+	<div class="menu left">
+		<div class="box">
+			<div class="head"><i></i><div>管理菜单</div></div>
+			<ul><li><a href="{:url('admin/admin')}">后台首页</a></li>
+				<li><a href="{:url('book/add')}" id="Goods_add">商品添加</a></li>
+				<li><a href="{:url('book/all')}" id="Goods_index">商品列表</a></li>
+				<li><a href="#" id="Category_add">分类添加</a></li>
+				<li><a href="#" id="Category_index">分类列表</a></li>
+				<li><a href="#" id="Recycle_index">回收站</a></li>
+				<li><a href="#" id="User_index">会员管理</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="item"><div class="title">商品列表</div>
+<div class="top-button">
+	选择商品分类：<select id="category">
+		<option value="-1" >全部</option>
+		<option value="0" >未分类</option>
+		<option value="14" selected>图书</option><option value="15" >— 音像</option><option value="62" >— — 音乐</option><option value="63" >— — 影视</option><option value="64" >— — 游戏</option><option value="16" >— IT类</option><option value="17" >— — PHP书籍</option><option value="18" >— — JAVA书籍</option><option value="19" >— — MySQL书籍</option><option value="34" >— — C语言书籍</option><option value="49" >— — 网页书籍</option><option value="35" >— 少儿</option><option value="36" >— — 少儿英语</option><option value="37" >— — 少儿文学</option><option value="38" >— 管理</option><option value="39" >— — 经济</option><option value="40" >— — 金融</option><option value="41" >— — 投资</option><option value="42" >— 生活</option><option value="43" >— — 旅游</option><option value="44" >— — 运动</option><option value="45" >— 艺术</option><option value="46" >— — 摄影</option><option value="47" >— — 设计</option><option value="48" >— — 绘画</option><option value="54" >家具</option><option value="55" >手机</option><option value="56" >服装</option><option value="57" >家用电器</option><option value="58" >电脑、办公</option><option value="59" >运动户外</option><option value="60" >家具、厨具</option>	</select>
+	<a href="#" class="light">添加商品</a>
+	<a href="#">添加分类</a>
+</div>
+<div class="list full">
+	<table>
+		<tr><th class="t1">图书名称</th><th width="12%">作者</th><th width="12%">出版社</th><th width="6%">价格</th><th width="12%">书号</th><th width="12%">出版日期</th><th width="12%">操作</th></tr>
+        {volist name="data" id="vo"}
+        <tr>
+            <td class="t1"><a href="{:url('index/Goods/goods',array('id'=>$vo['bookid']))}">{$vo['bookname']}</a></td>
+            <td>{$vo['author']}</td><td>{$vo.press}</td>
+            <td>{$vo['price']}</td><td>{$vo.ISBN}</td><td>{$vo.pubdate}</td>
+            <td><a href="#">修改</a>  <a href="{:url('admin/Book/del',array('id'=>$vo['bookid']))}" class="act-del" data-id="52">删除</a></td>
+        </tr>
+        {/volist}
+    </table>
+</div>
+<div>{$data->render()}</div>
+</div>
+	</div>
+</div>
+<script>
+	$("#Goods_index").addClass("curr");
+</script>
+</body>
+</html>

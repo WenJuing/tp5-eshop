@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>未来商城 - 登录</title>
+		<link href="__STATIC__/index/css/user.css" rel="stylesheet" />
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="box">
+			<h1>未来商城 - 欢迎登录</h1>
+			<div class="main">
+				<div class="login-ad left">
+					<!--广告位-->
+				</div>
+				<form method="post" action="{:url('login/check')}">
+					<table class="login right">
+						<tr>
+							<th>用户名：</th>
+							<td><input type="text" name="nickname" required /></td>
+						</tr>
+						<tr>
+							<th>密码：</th>
+							<td><input type="password" name="password" required /></td>
+						</tr>
+						<tr>
+							<th>验证码：</th>
+							<td><input type="text" id="inputCode" name="verify" required /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><div id="checkCode" class="code" onclick="createCode(4)" ></div></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input class="button" type="submit" onclick="validateCode()" value="登　录" /></td>
+						</tr>
+						<tr>
+							<td colspan="2" class="center"><a href="{:url('login/register')}">立即注册</a>    <a href="{:url('index/index')}">返回首页</a></td>
+						</tr>
+					</table>
+				</form>
+				<div class="clear"></div>
+			</div>
+		</div>		
+	</body>
+</html>
