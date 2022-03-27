@@ -14,7 +14,7 @@
 	<h1>欢迎访问后台</h1>
 	<form method="post" action="{:url('Login/dologin')}">
 		<table>
-			<tr><th width="80">用户名：</th><td><input class="input" type="text" name="nickname" required /></td></tr>
+			<tr><th width="80">用户名：</th><td><input class="input" type="text" name="username" required /></td></tr>
 			<tr><th>密　码：</th><td><input class="input" type="password" name="password" required /></td></tr>
 			<tr><th>验证码：</th><td><input class="input" type="text" name="captcha" required /></td></tr>
 			<tr><td> </td><td><img src="{:captcha_src()}" onclick="this.src='{:captcha_src()}'" /></td></tr>

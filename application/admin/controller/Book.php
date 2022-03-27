@@ -3,9 +3,10 @@ namespace app\admin\controller;
 use think\Controller;
 use app\admin\Model\Book as BookModel;
 use think\Request;
+use think\Session;
 class Book extends Controller {
     public function add() {
-        if(session('username') == 'admin') {
+        if(Session::has('nickname')) {
             if(request()->isPost()) {    //如果收到信息执行下面语句
                 $books = db('books');
                 $request = Request::instance();     //生成一个可以收集信息的对象

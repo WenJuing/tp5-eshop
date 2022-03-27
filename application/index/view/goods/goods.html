@@ -8,24 +8,7 @@
 </head>
 <body>
 <div class="top">
-			<div class="top-nav">
-				<ul>
-					<li>收藏本站</li>
-					<li>关注本站</li>
-				</ul>
-				<ul class="right">
-					<li>您好，欢迎来到未来商城！[<a href="login.html">登录</a>][<a href="register.html">免费注册</a>]</li>
-					<li class="line">|</li>
-					<li><a href="myorder.html">我的订单</a></li>
-					<li class="line">|</li>
-					<li><a href="member.html">会员中心</a></li>
-					<li class="line">|</li>
-					<li><a href="mycart.html">我的购物车</a></li>
-					<li class="line">|</li>
-					<li>联系客服</li>
-				</ul>
-			</div>
-		</div>
+        {include file="public/top"/}        
 		<div class="box">
 			<div class="header">
 				<a class="left" href="index.html">
@@ -44,7 +27,7 @@
 			<div class="nav">
 				<ul>
 					<li id="Index_find"><a class="category" href="#">全部商品分类</a></li>
-					<li id="Index_index"><a href="index.html">首页</a></li>
+					<li id="Index_index"><a href="{:url('index/index')}">首页</a></li>
 					<li><a href="#">特色购物</a></li>
 					<li><a href="#">优惠促销</a></li>
 					<li><a href="#">限时秒杀</a></li>

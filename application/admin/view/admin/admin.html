@@ -9,19 +9,7 @@
 <body>
 {include file="public/top"/}
 <div class="main">
-	<div class="menu left">
-		<div class="box">
-			<div class="head"><i></i><div>管理菜单</div></div>
-			<ul><li><a href="{:url('admin/admin')}">后台首页</a></li>
-				<li><a href="{:url('book/add')}" id="Goods_add">商品添加</a></li>
-				<li><a href="{:url('book/all')}" id="Goods_index">商品列表</a></li>
-				<li><a href="#" id="Category_add">分类添加</a></li>
-				<li><a href="#" id="Category_index">分类列表</a></li>
-				<li><a href="#" id="Recycle_index">回收站</a></li>
-				<li><a href="#" id="User_index">会员管理</a></li>
-			</ul>
-		</div>
-	</div>
+    {include file="public/left"/}
 	<div class="content">
 		<div class="item"><div class="title">后台首页</div>
 <dl class="bordered">

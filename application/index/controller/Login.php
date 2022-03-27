@@ -14,14 +14,20 @@ class Login extends Controller
     {
         $who['username'] = $_POST['nickname'];
         $who['password'] = $_POST['password'];
+        $verify = $_POST['verify'];
         $user = user::get(['username'=>$who['username']]);
-        if($who['password'] == $user->password) {
-            session('username',$who['username']);
+        if($who['password'] == $user->password) {   // 若该用户民的密码是输入的密码，则登录成功
+            session('nickname',$user->nickname);
             $this->success('登录成功', 'index/index', 3);
         }
         else{
-            $this->error('登录失败！');
+            $this->error('用户名或密码输出错误！', 'login/login', 3);
         }
+    }
+    public function out()   // 注销
+    {
+        session(null);
+        return redirect('index/index');
     }
     public function register()  // 注册页面
     {
@@ -45,8 +51,7 @@ class Login extends Controller
         {
             if ($user->save()) 
             {
-                session('username', $user->username);
-                $this->success('用户'.$user->nickname.'注册成功！', 'index/index', 3);
+                $this->success('用户'.$user->nickname.'注册成功！', 'login/login', 3);
             } 
             else 
             {
