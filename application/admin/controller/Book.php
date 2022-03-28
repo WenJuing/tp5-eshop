@@ -29,9 +29,14 @@ class Book extends Controller {
         }
     }
     public function all() {
-        $data = db('books')->paginate(4);
-        $this->assign('data',$data);
-        return $this->fetch();
+        if (Session::has('nickname')) {
+            $data = db('books')->paginate(4);
+            $this->assign('data',$data);
+            return $this->fetch();
+        } else {
+            $this->error("这是管理页面，请先登录！",url('Login/login'));
+        }
+
     }
     public function del() {
         $bookid = input('id');
@@ -42,6 +47,23 @@ class Book extends Controller {
         }else{
             return $this->error("删除的图书不存在！",url('book/all'));
         }
-
+    }
+    public function edit() {    // 修改图书页面
+        $bookid = input('id');
+        $book = BookModel::get($bookid);
+        $this->assign('book', $book);
+        return $this->fetch();
+    }
+    public function update() {
+        $request = Request::instance();
+        $data = $request->post();
+        $file = request()->file('picture');
+        if($file) {
+            $info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');     //DS的值为当前系统分隔符，即\
+            if($info) $data['picture'] = $info->getFilename();  //为$data添加图片名字信息
+            else echo $file->getError();
+        }
+        $result = BookModel::update($data);
+        return $this->success("更新成功！", url('book/all'));
     }
 }

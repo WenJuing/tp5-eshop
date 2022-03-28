@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>购物车 - 未来商城</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="__STATIC__/index/css/style.css"/>
+	<script src="__STATIC__/index/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="top">
+    {include file="public/top"/}   
+		<div class="box">
+			<div class="header">
+				<a class="left" href="{:url('index/index')}">
+					<div class="logo"></div>
+				</a>
+				<div class="search left">
+					<input type="text" class="left" />
+					<input class="search-btn" type="button" value="搜索" />
+					<p class="search-hot">热门搜索：PHP　HTML5　计算机　Web开发</p>
+				</div>
+				<div class="info left">
+					<input type="button" value="会员中心" onclick="location.href='member.php'" />
+					<input type="button" value="去购物车结算" onclick="location.href='mycart.php'" />
+				</div>
+			</div>
+			<div class="nav">
+				<ul>
+					<li id="Index_find"><a class="category" href="#">全部商品分类</a></li>
+					<li id="Index_index"><a href="index.php">首页</a></li>
+					<li><a href="#">特色购物</a></li>
+					<li><a href="#">优惠促销</a></li>
+					<li><a href="#">限时秒杀</a></li>
+					<li><a href="#">品牌专区</a></li>
+					<li><a href="#">服务中心</a></li>
+				</ul>
+			</div>
+<div class="usercenter">
+<ul class="menu left">
+	<li><a href="#" id="User_index">个人信息</a></li>
+	<li><a href="myorder.php" id="Order_index">我的订单</a></li>
+	<li>我的关注</li>
+	<li><a href="#" id="User_addr">收货地址</a></li>
+	<li>消费记录</li>
+	<li><a href="mycart.php" id="Cart_index">购物车</a></li>
+</ul>
+	<div class="content left">我的购物车
+		{if !$cart}
+		<br /><div style='width:1000px;text-align:center';><a href="{:url('index/index')}"><img src='__ROOT__/uploads/no.jpg'></a></div>
+		{else /}
+		<form method="post" action="order.php">
+		<table border="1" class="shopcart">
+			<tr class="tr-tit"><th class="w50"><a href="javascript:void(0);" onclick="checkedAll()">全选</a></th><th>商品</th><th class="w50">单价</th><th class="w92">数量</th><th class="w50">操作</th></tr>
+			<tr class="item">
+				<td class="center"><input type="checkbox" class="check" name="id[]" value="{$cart.cartid}" /></td>
+				<td><a href="{:url('goods/goods')}">{$book.bookname}</a></td>
+				<td class="center"><span class="item-price">{$book.price}</span></td>
+                <!-- 商品数量的加减 -->
+				<td><input class="setNum" type="button" value="-" /><input class="item-num" onkeyup="checkNum(this)" type="text" value="{$cart.booknum}" name="num[]"/><input class="setNum"  type="button" value="+" /></td>
+				<td class="center"><a href="#" />删除</a></td>
+			</tr>
+				<tr><th><a href="javascript:void(0);" onclick="checkedAll()">全选</a></th><td colspan="4">删除选中的商品&nbsp;&nbsp;继续购物&nbsp;&nbsp;
+				共<span id="num"></span>件商品 总计：<span class="price">￥<span id="monery"></span></span><input type="hidden" id="totalPrice" name="totalPrice"/>
+				<input type="submit" value="提交订单" class="order-btn" />
+			</td></tr>
+		</table>
+		</form>
+	</div>
+	<div class="clear"></div>
+</div>
+<script>
+	//点击修改数量
+	$(".setNum").click(function () {
+		if ($(this).val() === '-') {
+			if ($(this).next().val() !== '1') {
+				var num = $(this).next().val() - 1;
+				$(this).next().attr("value", num);
+				$(this).next().val(num);
+                // $.get("modify.php",{cartid:cartid,action:"minus"});
+			}
+		}else if ($(this).val() === '+') {
+			if ($(this).prev().val() !== '100') {
+				var num = parseInt($(this).prev().val()) + parseInt(1);
+				$(this).prev().attr("value", num);
+				$(this).prev().val(num);
+                // $.get("modify.php",{cartid:cartid,action:"plus"});
+			}
+		}
+		func();
+	});
+	//键盘修改数量
+	function checkNum(obj) {
+		//判断当前值是否合法   凡是不合法的都重置为1
+		var num = $(obj).val();
+		if (num <= 1 || num >= 100) {
+			$(obj).val(1);
+		}
+		func();
+	}
+	//默认情况下，设置为全选状态
+	$(function () {
+		$(":checkbox").prop("checked", true);
+		$(":checkbox").attr("checked", true);
+		func();
+	});
+	//全选
+	function checkedAll() {
+		$(":checkbox").each(function () {
+			if (this.checked) {
+				$(this).prop("checked", false);
+				$(this).attr("checked", false);
+			} else {
+				$(this).prop("checked", true);
+				$(this).attr("checked", true);
+			}
+		});
+		func();
+	}
+	//单个选择时的状态设置
+	$(".check").click(function () {
+		$(this).each(function (i, v) {
+			if (!v.checked) {
+				$(this).prop("checked", false);
+				$(this).attr("checked", false);
+			} else {
+				$(this).prop("checked", true);
+				$(this).attr("checked", true);
+			}
+		});
+		func();
+	});
+	//计算总价
+	function func() {
+		var price = 0;
+		var num = 0;
+		var totalnum = 0;
+		$(".item").find(":checkbox:checked").each(function () {
+			$(this).closest("tr").find(".item-num").each(function () {
+				totalnum += parseInt($(this).val());
+				num = parseInt($(this).val());
+				$(this).closest("tr").find(".item-price").each(function () {
+					price += $(this).text() * num;
+				});
+			});
+		});
+		$("#monery").text(price);
+		$("#num").text(totalnum);
+		$("#totalPrice").attr("value",price);
+	}
+</script>
+{/if}
+	<div class="service">
+		<ul><li>购物指南</li><li>配送方式</li><li>支付方式</li>
+			<li>售后服务</li><li>特色服务</li><li>网络服务</li>
+		</ul>
+	</div>
+	<div class="footer">未来商城 &copy; 版权所有</div>
+</div>
+</body>
+</html>

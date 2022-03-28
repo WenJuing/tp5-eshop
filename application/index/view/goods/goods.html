@@ -11,7 +11,7 @@
         {include file="public/top"/}        
 		<div class="box">
 			<div class="header">
-				<a class="left" href="index.html">
+				<a class="left" href="{:url('index/index')}">
 					<div class="logo"></div>
 				</a>
 				<div class="search left">
@@ -39,7 +39,7 @@
 	<div class="now_cat">当前位置：&nbsp;<a 
 		href="#">图书</a>&nbsp;&gt;&nbsp;<a 
 		href="#">IT类</a>&nbsp;&gt;&nbsp;<a 
-		href="#">PHP</a>&nbsp;&gt;&nbsp;学的不仅是技术,更是梦想!</div>
+		href="#">PHP</a>&nbsp;&gt;&nbsp;{$data.bookname}</div>
 	<div class="pic left">		<img src="__ROOT__/uploads/{$data.picture}" /></div>
 	<div class="info left"><h1>{$data.bookname}</h1><table>
 		<tr><th>商品编号：</th><td>{$data.ISBN}</td></tr>
@@ -52,7 +52,7 @@
 			<input type="button" value="-" class="cnt-btn" />
 			<input type="text" value="1" id="num" class="num-btn center" />
 			<input type="button" value="+" class="cnt-btn" />（库存：107）</td></tr>
-		<tr><td colspan="2" class="button"><a href="#" id="#buy">立即购买</a><a href="#" id="#addCart">加入购物车</a></td></tr>
+		<tr><td colspan="2" class="button"><a href="#" id="#buy">立即购买</a><a href="{:url('goods/mycart')}" id="#addCart">加入购物车</a></td></tr>
 		</table></div>		
 		<div class="clear"></div>
 	<div class="goods-slide left"><div class="title">相关商品推荐</div>

@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<title>未来商城 - 后台管理系统</title>
 	<link rel="stylesheet" href="__STATIC__/admin/css/style.css"/>
-	<script src="__STATIC__index/js/jquery.min.js"></script>
-</head>
+	<script src="__STATIC__/admin/js/jquery.min.js"></script>
+	<script src="__STATIC__/admin/js/func.js"></script>
 <body>
 {include file="public/top"/}
 <div class="main">
@@ -28,7 +28,7 @@
             <td class="t1"><a href="{:url('index/Goods/goods',array('id'=>$vo['bookid']))}">{$vo['bookname']}</a></td>
             <td>{$vo['author']}</td><td>{$vo.press}</td>
             <td>{$vo['price']}</td><td>{$vo.ISBN}</td><td>{$vo.pubdate}</td>
-            <td><a href="#">修改</a>  <a href="{:url('admin/Book/del',array('id'=>$vo['bookid']))}" class="act-del" data-id="52">删除</a></td>
+            <td><a href="{:url('admin/Book/edit',array('id'=>$vo['bookid']))}">修改</a>  <a href="{:url('admin/Book/del',array('id'=>$vo['bookid']))}" class="act-del" data-id="52" onclick="return validateDel();">删除</a></td>
         </tr>
         {/volist}
     </table>
