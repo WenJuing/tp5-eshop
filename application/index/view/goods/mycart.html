@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="__STATIC__/index/css/style.css"/>
 	<script src="__STATIC__/index/js/jquery.min.js"></script>
+	<script src="__STATIC__/admin/js/func.js"></script>
 </head>
 <body>
 <div class="top">
@@ -27,7 +28,7 @@
 			<div class="nav">
 				<ul>
 					<li id="Index_find"><a class="category" href="#">全部商品分类</a></li>
-					<li id="Index_index"><a href="index.php">首页</a></li>
+					<li id="Index_index"><a href="{:url('index/index')}">首页</a></li>
 					<li><a href="#">特色购物</a></li>
 					<li><a href="#">优惠促销</a></li>
 					<li><a href="#">限时秒杀</a></li>
@@ -51,14 +52,16 @@
 		<form method="post" action="order.php">
 		<table border="1" class="shopcart">
 			<tr class="tr-tit"><th class="w50"><a href="javascript:void(0);" onclick="checkedAll()">全选</a></th><th>商品</th><th class="w50">单价</th><th class="w92">数量</th><th class="w50">操作</th></tr>
+            {volist name='cart' id='v'}
 			<tr class="item">
-				<td class="center"><input type="checkbox" class="check" name="id[]" value="{$cart.cartid}" /></td>
-				<td><a href="{:url('goods/goods')}">{$book.bookname}</a></td>
-				<td class="center"><span class="item-price">{$book.price}</span></td>
+				<td class="center"><input type="checkbox" class="check" name="id[]" value="{$v.cartid}" /></td>
+				<td><a href="{:url('goods/goods', array('id'=>$v['bookid']))}">{$v.bookname}</a></td>
+				<td class="center"><span class="item-price">{$v.price}</span></td>
                 <!-- 商品数量的加减 -->
-				<td><input class="setNum" type="button" value="-" /><input class="item-num" onkeyup="checkNum(this)" type="text" value="{$cart.booknum}" name="num[]"/><input class="setNum"  type="button" value="+" /></td>
-				<td class="center"><a href="#" />删除</a></td>
+				<td><input class="setNum" type="button" value="-" /><input class="item-num" onkeyup="checkNum(this)" type="text" value="{$v.booknum}" name="num[]"/><input class="setNum"  type="button" value="+" /></td>
+				<td class="center"><a href="{:url('goods/delcart', array('id'=>$v['cartid']))}"  onclick="return validateDel();"/>删除</a></td>
 			</tr>
+            {/volist}
 				<tr><th><a href="javascript:void(0);" onclick="checkedAll()">全选</a></th><td colspan="4">删除选中的商品&nbsp;&nbsp;继续购物&nbsp;&nbsp;
 				共<span id="num"></span>件商品 总计：<span class="price">￥<span id="monery"></span></span><input type="hidden" id="totalPrice" name="totalPrice"/>
 				<input type="submit" value="提交订单" class="order-btn" />

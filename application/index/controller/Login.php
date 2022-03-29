@@ -16,7 +16,7 @@ class Login extends Controller
         $who['password'] = $_POST['password'];
         $verify = $_POST['verify'];
         $user = user::get(['username'=>$who['username']]);
-        if($who['password'] == $user->password) {   // 若该用户民的密码是输入的密码，则登录成功
+        if($user && $who['password'] == $user->password) {   // 若该用户民的密码是输入的密码，则登录成功
             session('nickname',$user->nickname);
             $this->success('登录成功', 'index/index', 3);
         }
