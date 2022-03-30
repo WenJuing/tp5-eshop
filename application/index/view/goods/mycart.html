@@ -10,46 +10,14 @@
 <body>
 <div class="top">
     {include file="public/top"/}   
-		<div class="box">
-			<div class="header">
-				<a class="left" href="{:url('index/index')}">
-					<div class="logo"></div>
-				</a>
-				<div class="search left">
-					<input type="text" class="left" />
-					<input class="search-btn" type="button" value="搜索" />
-					<p class="search-hot">热门搜索：PHP　HTML5　计算机　Web开发</p>
-				</div>
-				<div class="info left">
-					<input type="button" value="会员中心" onclick="location.href='member.php'" />
-					<input type="button" value="去购物车结算" onclick="location.href='mycart.php'" />
-				</div>
-			</div>
-			<div class="nav">
-				<ul>
-					<li id="Index_find"><a class="category" href="#">全部商品分类</a></li>
-					<li id="Index_index"><a href="{:url('index/index')}">首页</a></li>
-					<li><a href="#">特色购物</a></li>
-					<li><a href="#">优惠促销</a></li>
-					<li><a href="#">限时秒杀</a></li>
-					<li><a href="#">品牌专区</a></li>
-					<li><a href="#">服务中心</a></li>
-				</ul>
-			</div>
+	{include file="public/header-nav"/} 	
 <div class="usercenter">
-<ul class="menu left">
-	<li><a href="#" id="User_index">个人信息</a></li>
-	<li><a href="myorder.php" id="Order_index">我的订单</a></li>
-	<li>我的关注</li>
-	<li><a href="#" id="User_addr">收货地址</a></li>
-	<li>消费记录</li>
-	<li><a href="mycart.php" id="Cart_index">购物车</a></li>
-</ul>
-	<div class="content left">我的购物车
+    {include file="public/menu-left"/}   
+	<div class="content">我的购物车
 		{if !$cart}
 		<br /><div style='width:1000px;text-align:center';><a href="{:url('index/index')}"><img src='__ROOT__/uploads/no.jpg'></a></div>
 		{else /}
-		<form method="post" action="order.php">
+		<form method="post" action="{:url('goods/submitcart')}">
 		<table border="1" class="shopcart">
 			<tr class="tr-tit"><th class="w50"><a href="javascript:void(0);" onclick="checkedAll()">全选</a></th><th>商品</th><th class="w50">单价</th><th class="w92">数量</th><th class="w50">操作</th></tr>
             {volist name='cart' id='v'}

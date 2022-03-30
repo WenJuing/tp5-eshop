@@ -4,6 +4,8 @@ use think\Controller;
 use think\Session;
 use app\index\model\Carts as cart;
 use app\index\model\Books as book;
+use app\index\model\User as user;
+use app\index\model\Orders as order;
 use think\db;
 class Goods extends Controller {
     public function goods() {
@@ -51,5 +53,61 @@ class Goods extends Controller {
         $cartid = input('id');
         $res = cart::destroy($cartid);
         return $this->success('删除成功！', 'goods/mycart');
+    }
+    public function submitcart() {
+        // 根据购物车表生成订单表
+        $nickname = session::get('nickname');
+        $cart_list = cart::all(['nickname'=>$nickname]);
+        $userid = user::get(['nickname'=>$nickname])->userid;
+        $format_time = date('Y-m-d H:i:s', time());
+        $num_time = date("YmdHis");
+        foreach ($cart_list as $cl) {
+            $order = new order;
+            $order->orderid = $num_time.$userid;
+            $order->nickname = $nickname;
+            $order->bookid = $cl->bookid;
+            $order->orderprice = book::get(['bookid'=>$cl->bookid])->price;
+            $order->booknum = $cl->booknum;
+            $order->ordertime = $format_time;
+            $order->save();
+        }
+        if (cart::destroy(['nickname'=>$nickname]))
+            return $this->success('订单已生成！', 'goods/myorder');
+        else
+            return $this->error('提交失败！', 'goods/myorder');
+    }
+    public function buy() {
+        $bookid = input('id');
+        $nickname = session::get('nickname');
+        $userid = user::get(['nickname'=>$nickname])->userid;
+
+        $order = new order;
+        $order->orderid = date("YmdHis").$userid;
+        $order->nickname = $nickname;
+        $order->bookid = $bookid;
+        $order->orderprice = book::get(['bookid'=>$bookid])->price;
+        $order->booknum = 1;
+        $order->ordertime = date('Y-m-d H:i:s', time());
+        if ($order->save())
+            return $this->success('订单已生成！', 'goods/myorder');
+        else
+            return $order->getError();
+    }
+    public function myorder() {
+        if (Session::has('nickname')) {
+            // 查找该用户是否有下单记录
+            $nickname = session::get('nickname');
+            $order = Db('orders')->alias('o')
+            ->where('o.nickname', '=', $nickname)
+            ->join('books b', 'o.bookid = b.bookid')
+            ->join('users u', 'u.nickname = o.nickname')
+            // ->group('orderid')
+            ->field('o.orderid,o.bookid,b.bookname,o.booknum,b.price,o.ordertime,u.address,u.tel,u.username')
+            ->select();
+            $this->assign('order', $order);
+            return $this->fetch();
+        } else {
+            return $this->error('请先登录！', 'login/login');
+        }
     }
 }

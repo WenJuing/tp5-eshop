@@ -9,32 +9,7 @@
 <body>
 <div class="top">
         {include file="public/top"/}        
-		<div class="box">
-			<div class="header">
-				<a class="left" href="{:url('index/index')}">
-					<div class="logo"></div>
-				</a>
-				<div class="search left">
-					<input type="text" class="left" />
-					<input class="search-btn" type="button" value="搜索" />
-					<p class="search-hot">热门搜索：PHP　HTML5　计算机　Web开发</p>
-				</div>
-				<div class="info left">
-					<input type="button" value="会员中心" onclick="location.href='member.html'" />
-					<input type="button" value="去购物车结算" onclick="location.href='mycart.html'" />
-				</div>
-			</div>
-			<div class="nav">
-				<ul>
-					<li id="Index_find"><a class="category" href="#">全部商品分类</a></li>
-					<li id="Index_index"><a href="{:url('index/index')}">首页</a></li>
-					<li><a href="#">特色购物</a></li>
-					<li><a href="#">优惠促销</a></li>
-					<li><a href="#">限时秒杀</a></li>
-					<li><a href="#">品牌专区</a></li>
-					<li><a href="#">服务中心</a></li>
-				</ul>
-			</div>
+        {include file="public/header-nav"/} 
 <div class="goodsinfo">
 	<div class="now_cat">当前位置：&nbsp;<a 
 		href="#">图书</a>&nbsp;&gt;&nbsp;<a 
@@ -52,7 +27,7 @@
 			<input type="button" value="-" class="cnt-btn" />
 			<input type="text" value="1" id="num" class="num-btn center" />
 			<input type="button" value="+" class="cnt-btn" />（库存：107）</td></tr>
-		<tr><td colspan="2" class="button"><a href="#" id="#buy">立即购买</a><a href="{:url('goods/addcart', array('id'=>$data['bookid']))}" id="#addCart">加入购物车</a></td></tr>
+		<tr><td colspan="2" class="button"><a href="{:url('goods/buy', array('id'=>$data['bookid']))}" id="#buy">立即购买</a><a href="{:url('goods/addcart', array('id'=>$data['bookid']))}" id="#addCart">加入购物车</a></td></tr>
 		</table></div>		
 		<div class="clear"></div>
 	<div class="goods-slide left"><div class="title">相关商品推荐</div>
