@@ -20,7 +20,7 @@
 			<tr class="tr-tit"><th class="txt-left" colspan="4">订单号：{$v.orderid}　<a href="#">立即支付</a>　<a href="#" data-id="7" class="cancel">取消订单</a></th></tr>
             <tr class="tr-tit"><th width="500px">图书名称</th><th width="100px">数量</th><th width="100px">单价</th><th width="100px">小计</th></tr>
 			<tr><td class="gname"><a href="{:url('goods/goods', array('id'=>$v['bookid']))}" target="_blank">{$v.bookname}</td><td class="txt-center">{$v.booknum}</td><td class='txt-center'><span>{$v.price}元</span></td><td class="txt-center"><span>{$v.booknum*$v.price}元</span></td></tr>
-            <tr><td colspan="3">下单时间：{$v.ordertime}</td><td class='txt-center'>总计<span>￥1111111111</span></td></tr>
+            <tr><td colspan="3">下单时间：{$v.ordertime}</td><td class='txt-center'>总计<span>￥40.4</span></td></tr>
             <tr><td colspan="4">收件地址：{$v.address}，收件人：{$v.username}，联系电话：{$v.tel}</td></tr>
     	</table>
         {/volist}
