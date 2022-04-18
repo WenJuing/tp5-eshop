@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>未来商城 - 后台管理系统</title>
+	<link rel="stylesheet" href="__STATIC__/admin/css/style.css"/>
+	<script src="__STATIC__/admin/js/jquery.min.js"></script>
+	<script src="__STATIC__/admin/js/func.js"></script>
+<body>
+{include file="public/top"/}
+<div class="main">
+    {include file="public/left"/}
+	<div class="content">
+		<div class="item"><div class="title">下单列表</div>
+<div class="list full">
+	<table>
+		<tr><th class="t1">订单编号</th><th width="12%">下单昵称</th><th width="12%">下单书籍</th><th width="6%">下单价格</th><th width="12%">下单数量</th><th width="12%">订单总额</th><th width="12%">下单时间</th></tr>
+        {volist name="data" id="vo"}
+        <tr>
+            <td class="t1">{$vo['orderid']}</td>
+            <td >{$vo.nickname}</td>
+            <td>{$vo.bookname}</td>
+            <td>{$vo.price}</td>
+            <td>{$vo.booknum}</td>
+            <td >{$vo.booknum*$vo.price}</td>
+            <td>{$vo.ordertime}</td>
+        </tr>
+        {/volist}
+    </table>
+</div>
+<div>{$data->render()}</div>
+</div>
+	</div>
+</div>
+<script>
+	$("#Goods_index").addClass("curr");
+</script>
+</body>
+</html>

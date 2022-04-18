@@ -36,7 +36,6 @@ class Book extends Controller {
         } else {
             $this->error("这是管理页面，请先登录！",url('Login/login'));
         }
-
     }
     public function del() {
         $bookid = input('id');
@@ -65,5 +64,17 @@ class Book extends Controller {
         }
         $result = BookModel::update($data);
         return $this->success("更新成功！", url('book/all'));
+    }
+    public function order() {
+        if (Session::has('nickname')) {
+            $data = Db('orders')->alias('o')
+            ->join('books b', 'o.bookid = b.bookid')
+            ->field('o.orderid,b.bookname,o.booknum,b.price,o.ordertime,o.nickname')
+            ->paginate(10);
+            $this->assign('data',$data);
+            return $this->fetch();
+        } else {
+            $this->error("这是管理页面，请先登录！",url('Login/login'));
+        }
     }
 }
