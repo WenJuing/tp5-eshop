@@ -24,7 +24,7 @@ class Goods extends Controller {
             $this->assign('cart', $cart);
             return $this->fetch();
         } else {
-            return $this->error('请先登录！', 'login/login');
+            return $this->error('请先登录！', 'index/index');
         }
     }
     public function addcart() {
@@ -46,7 +46,7 @@ class Goods extends Controller {
                 $this->success('加入购物车成功！', 'goods/mycart');
             }
         } else {
-            return $this->error('请先登录！', 'login/login');
+            return $this->error('请先登录！', 'index/index');
         }
     }
     public function delcart() {
@@ -103,11 +103,11 @@ class Goods extends Controller {
             ->join('users u', 'u.nickname = o.nickname')
             // ->group('orderid')
             ->field('o.orderid,o.bookid,b.bookname,o.booknum,b.price,o.ordertime,u.address,u.tel,u.username')
-            ->select();
+            ->paginate(2);
             $this->assign('order', $order);
             return $this->fetch();
         } else {
-            return $this->error('请先登录！', 'login/login');
+            return $this->error('请先登录！', 'index/index');
         }
     }
 }

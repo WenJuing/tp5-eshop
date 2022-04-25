@@ -5,14 +5,14 @@
             <li>关注本站</li>
         </ul>
         <ul class="right">
-            {if $Request.session.nickname}<li>欢迎您！{$Request.session.nickname}</li> <a href="{:url('login/out')}">注销</a>
+            {if $Request.session.nickname}<li>欢迎您！{$Request.session.nickname} &nbsp;&nbsp;<a href="{:url('login/out')}">注销</a></li> 
             {else /}
-            <li>您好，欢迎来到未来商城！[<a href="{:url('index/login/login')}">登录</a>][<a href="{:url('login/register')}">免费注册</a>]</li>
+            <li>您好，欢迎来到图书之家！请先[<a href="#" id="open_btn" class="btn">登录</a>]或者[<a href="#" id="register_btn">免费注册</a>]</li>
             {/if}
             <li class="line">|</li>
             <li><a href="{:url('goods/myorder')}">我的订单</a></li>
             <li class="line">|</li>
-            <li><a href="member.html">会员中心</a></li>
+            <li><a href="{:url('index/all')}">会员中心</a></li>
             <li class="line">|</li>
             <li><a href="{:url('goods/mycart')}">我的购物车</a></li>
             <li class="line">|</li>

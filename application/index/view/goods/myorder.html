@@ -12,31 +12,27 @@
     {include file="public/header-nav"/} 
 <div class="usercenter">
     {include file="public/menu-left"/}   
-	<div class="content left">我的订单
+	<div class="content left">
     {if !$order} <br />你还没有下过订单！
     {else /}
         {volist name='order' id='v'}
 		<table class="order">
-			<tr class="tr-tit"><th class="txt-left" colspan="4">订单号：{$v.orderid}　<a href="#">立即支付</a>　<a href="#" data-id="7" class="cancel">取消订单</a></th></tr>
+			<tr class="tr-tit"><th class="txt-left" colspan="4">订单号：{$v.orderid} &nbsp;&nbsp;&nbsp;下单时间：{$v.ordertime}</th></tr>
             <tr class="tr-tit"><th width="500px">图书名称</th><th width="100px">数量</th><th width="100px">单价</th><th width="100px">小计</th></tr>
 			<tr><td class="gname"><a href="{:url('goods/goods', array('id'=>$v['bookid']))}" target="_blank">{$v.bookname}</td><td class="txt-center">{$v.booknum}</td><td class='txt-center'><span>{$v.price}元</span></td><td class="txt-center"><span>{$v.booknum*$v.price}元</span></td></tr>
-            <tr><td colspan="3">下单时间：{$v.ordertime}</td><td class='txt-center'>总计<span>￥40.4</span></td></tr>
             <tr><td colspan="4">收件地址：{$v.address}，收件人：{$v.username}，联系电话：{$v.tel}</td></tr>
     	</table>
         {/volist}
     {/if}
+    <div>{$order->render()}</div>
     </div>
 	<form method="post" id="form">
 		<input type="hidden" id="target" name="id">
 	</form>
 	<div class="clear"></div>
 </div>
-	<div class="service">
-		<ul><li>购物指南</li><li>配送方式</li><li>支付方式</li>
-			<li>售后服务</li><li>特色服务</li><li>网络服务</li>
-		</ul>
-	</div>
-	<div class="footer">未来商城 &copy; 版权所有</div>
+
+	<div class="footer">图书之家 &copy; 版权所有</div>
 </div>
 </body>
 </html>

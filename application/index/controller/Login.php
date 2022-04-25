@@ -6,10 +6,6 @@ use app\index\model\User as user;
 
 class Login extends Controller
 {
-    public function login() // 登录页面
-    {
-        return $this->fetch();
-    }
     public function check() // 检查登录
     {
         $who['username'] = $_POST['nickname'];
@@ -21,17 +17,13 @@ class Login extends Controller
             $this->success('登录成功', 'index/index', 3);
         }
         else{
-            $this->error('用户名或密码输出错误！', 'login/login', 3);
+            $this->error('用户名或密码输出错误！', 'index/index', 3);
         }
     }
     public function out()   // 注销
     {
         session(null);
         return redirect('index/index');
-    }
-    public function register()  // 注册页面
-    {
-        return $this->fetch();
     }
     public function add()   // 注册（添加用户信息）
     {
@@ -45,13 +37,13 @@ class Login extends Controller
         $user2 = user::get(['nickname'=>$user->nickname]);
         if ($user2 != NULL) 
         {
-            $this->error('该昵称已存在，请重新注册！', 'register', 3);
+            $this->error('该昵称已存在，请重新注册！', 'index/index', 3);
         } 
         else 
         {
             if ($user->save()) 
             {
-                $this->success('用户'.$user->nickname.'注册成功！', 'login/login', 3);
+                $this->success('用户'.$user->nickname.'注册成功！', 'index/index', 3);
             } 
             else 
             {

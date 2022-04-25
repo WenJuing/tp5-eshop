@@ -3,18 +3,21 @@
 <head>
 	<title>商品详情 - 未来商城</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="__STATIC__/index/css/style.css"/>
+		<link href="__STATIC__/index/css/user.css" rel="stylesheet" />
+        <link rel="stylesheet" href="__STATIC__/index/css/style.css"/>
 	<script src="__STATIC__/index/js/jquery.min.js"></script>
 </head>
 <body>
 <div class="top">
         {include file="public/top"/}        
-        {include file="public/header-nav"/} 
+        {include file="public/header-nav"/}
+<!-- 登录弹窗 -->
+{include file="public/win-login"/}
+<!-- 弹窗结束 -->
+<!-- 注册弹窗 -->
+{include file="public/win-register"/}
+<!-- 弹窗结束 -->
 <div class="goodsinfo">
-	<div class="now_cat">当前位置：&nbsp;<a 
-		href="#">图书</a>&nbsp;&gt;&nbsp;<a 
-		href="#">IT类</a>&nbsp;&gt;&nbsp;<a 
-		href="#">PHP</a>&nbsp;&gt;&nbsp;{$data.bookname}</div>
 	<div class="pic left">		<img src="__ROOT__/uploads/{$data.picture}" /></div>
 	<div class="info left"><h1>{$data.bookname}</h1><table>
 		<tr><th>商品编号：</th><td>{$data.ISBN}</td></tr>
@@ -75,12 +78,9 @@ $("#buy").click(function(){
 	$("#form_buy").submit();
 });
 </script>
-	<div class="service">
-		<ul><li>购物指南</li><li>配送方式</li><li>支付方式</li>
-			<li>售后服务</li><li>特色服务</li><li>网络服务</li>
-		</ul>
-	</div>
-	<div class="footer">未来商城 &copy; 版权所有</div>
+
+	<div class="footer">图书之家 &copy; 版权所有</div>
 </div>
+<script src="__STATIC__/index/js/function.js"></script>
 </body>
 </html>

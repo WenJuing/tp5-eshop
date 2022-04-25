@@ -1,0 +1,35 @@
+<div class="box" id="background">
+    <div class="main radius">
+        <div class="login-ad left">
+            <!--广告位-->
+        </div>
+        <form method="post" action="{:url('login/check')}">
+            <table class="login right">
+                <tr>
+                    <th>用户名：</th>
+                    <td><input type="text" name="nickname" required /></td>
+                </tr>
+                <tr>
+                    <th>密码：</th>
+                    <td><input type="password" name="password" required /></td>
+                </tr>
+                <tr>
+                    <th>验证码：</th>
+                    <td><input type="text" id="inputCode" name="verify" required /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><div id="checkCode" class="code" onclick="createCode(4)" ></div></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input class="button" type="submit" onclick="validateCode()" value="登　录" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="center"><a href="#" id="register_btn">立即注册</a>    <a href="{:url('index/index')}">返回首页</a><a href="#" id="close_btn">取消</a></td>
+                </tr>
+            </table>
+        </form>
+        <div class="clear"></div>
+    </div>
+</div>	

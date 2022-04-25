@@ -27,30 +27,8 @@
             {include file="public/win-register"/}
             <!-- 弹窗结束 -->
 			<!--新书发售-->
-			<div class="best win-opacity">
-                <div class="best-title">新书发售</div>
-                {volist name='data' id='v'}
-				<ul class="item left center">
-					<li><a href="{:url('Goods/goods',array('id'=>$v['bookid']))}" target="_blank"><img src="__ROOT__/uploads/{$v.picture}"></a></li>
-					<li class="goods">{$v.bookname}</li>
-					<li class="price">￥{$v.price}</li>
-                </ul>
-                {/volist}				
-			</div>
-            <!--热卖图书-->
-			<div class="best win-opacity">
-                <div class="best-title">热卖图书</div>
-                {volist name='data' id='v'}
-				<ul class="item left center">
-					<li><a href="{:url('Goods/goods',array('id'=>$v['bookid']))}" target="_blank"><img src="__ROOT__/uploads/{$v.picture}"></a></li>
-					<li class="goods">{$v.bookname}</li>
-					<li class="price">￥{$v.price}</li>
-                </ul>
-                {/volist}				
-			</div>
-            <!--其他图书-->
-			<div class="best win-opacity">
-                <div class="best-title">其他图书</div>
+			<div class="best">
+                <div class="best-title">全部商品</div>
                 {volist name='data' id='v'}
 				<ul class="item left center">
 					<li><a href="{:url('Goods/goods',array('id'=>$v['bookid']))}" target="_blank"><img src="__ROOT__/uploads/{$v.picture}"></a></li>
@@ -62,6 +40,7 @@
 			<script>
 				$("#Index_index").addClass("curr");
 			</script>
+
 			<div class="footer"><a href="{:url('admin/admin/admin')}">图书之家</a> &copy; 版权所有</div>
 		</div>
 		<script src="__STATIC__/index/js/function.js"></script>
