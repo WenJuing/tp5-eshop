@@ -5,15 +5,16 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="__STATIC__/index/css/style.css"/>
 	<script src="__STATIC__/index/js/jquery.min.js"></script>
-	<script src="__STATIC__/admin/js/func.js"></script>
+    <script src="//at.alicdn.com/t/font_1905047_vhae1rocf7.js"></script>
+    <script src="__STATIC__/admin/js/func.js"></script>
 </head>
 <body>
-<div class="top">
     {include file="public/top"/}   
+    <div class="box">
 	{include file="public/header-nav"/} 	
 <div class="usercenter">
     {include file="public/menu-left"/}   
-	<div class="content">我的购物车
+	<div class="content left">
 		{if !$cart}
 		<br /><div style='width:1000px;text-align:center';><a href="{:url('index/index')}"><img src='__ROOT__/uploads/no.jpg'></a></div>
 		{else /}

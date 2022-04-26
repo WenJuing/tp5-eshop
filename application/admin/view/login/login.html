@@ -2,23 +2,31 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>后台登录 - 未来商城</title>
+	<title>后台登录 - 图书之家</title>
 	<link rel="stylesheet" href="__STATIC__/admin/css/style.css"/>
 	<script src="__STATIC__/admin/js/jquery.min.js"></script>
+    <script src="//at.alicdn.com/t/font_1905047_quc9lg8lo49.js"></script>
 </head>
 <body class="login">
 <div class="top">
-	<h1 class="left">未来商城 <span>后台管理系统</span></h1>
+	<h1 class="left">图书之家 <span>欢迎您访问后台管理系统！</span></h1>
 </div>
-<div class="box">
-	<h1>欢迎访问后台</h1>
+<div class="box radius">
+    <h1>
+        <svg class="icon yuanquan" aria-hidden="true">
+            <use xlink:href="#icon-yuanquanxiao"></use>
+        </svg>
+    </h1>
 	<form method="post" action="{:url('Login/dologin')}">
 		<table>
-			<tr><th width="80">用户名：</th><td><input class="input" type="text" name="username" required /></td></tr>
-			<tr><th>密　码：</th><td><input class="input" type="password" name="password" required /></td></tr>
-			<tr><th>验证码：</th><td><input class="input" type="text" name="captcha" required /></td></tr>
-			<tr><td> </td><td><img src="{:captcha_src()}" onclick="this.src='{:captcha_src()}'" /></td></tr>
-			<tr><td> </td><td><input class="login_btn" type="submit" value="登录" /></td></tr>
+            <tr><th>用户名</th></tr>
+			<tr><td><input class="input" type="text" name="username" required /></td></tr>
+            <tr><th>密码</th></tr>
+			<tr><td><input class="input" type="password" name="password" required /></td></tr>
+            <tr><th>验证码</th></tr>
+			<tr><td><input class="input" type="text" name="captcha" required /></td></tr>
+			<tr><td><img src="{:captcha_src()}" onclick="this.src='{:captcha_src()}'" /></td></tr>
+			<tr><td><input class="login_btn radius" type="submit" value="登录" /></td></tr>
 		</table>
 	</form>
 </div>

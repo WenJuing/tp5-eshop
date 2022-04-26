@@ -12,12 +12,6 @@
     {include file="public/left"/}
 	<div class="content">
 		<div class="item"><div class="title">修改商品</div>
-<div class="top-button">
-	修改商品分类：<select id="#category">
-		<option value="0">未分类</option>
-		<option value="14" selected>图书</option><option value="15" >— 音像</option><option value="62" >— — 音乐</option><option value="63" >— — 影视</option><option value="64" >— — 游戏</option><option value="16" >— IT类</option><option value="17">— — PHP书籍</option><option value="18" >— — JAVA书籍</option><option value="19" >— — MySQL书籍</option><option value="34" >— — C语言书籍</option><option value="49" >— — 网页书籍</option><option value="35" >— 少儿</option><option value="36" >— — 少儿英语</option><option value="37" >— — 少儿文学</option><option value="38" >— 管理</option><option value="39" >— — 经济</option><option value="40" >— — 金融</option><option value="41" >— — 投资</option><option value="42" >— 生活</option><option value="43" >— — 旅游</option><option value="44" >— — 运动</option><option value="45" >— 艺术</option><option value="46" >— — 摄影</option><option value="47" >— — 设计</option><option value="48" >— — 绘画</option><option value="54" >家具</option><option value="55" >手机</option><option value="56" >服装</option><option value="57" >家用电器</option><option value="58" >电脑、办公</option><option value="59" >运动户外</option><option value="60" >家具、厨具</option>	</select>
-	<a href="all.html" class="light">返回商品列表</a>
-</div>
 <div class="list auto">
 	<form method="post" enctype="multipart/form-data" action="{:url('book/update')}">
 	<input type="hidden" name="bookid" value="{$book.bookid}">

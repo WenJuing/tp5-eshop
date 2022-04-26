@@ -5,10 +5,11 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="__STATIC__/index/css/style.css"/>
 	<script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="//at.alicdn.com/t/font_1905047_vhae1rocf7.js"></script>
 </head>
 <body>
-<div class="top">
     {include file="public/top"/} 
+    <div class="box">
     {include file="public/header-nav"/} 
 <div class="usercenter">
     {include file="public/menu-left"/}   
@@ -17,10 +18,12 @@
     {else /}
         {volist name='order' id='v'}
 		<table class="order">
-			<tr class="tr-tit"><th class="txt-left" colspan="4">订单号：{$v.orderid} &nbsp;&nbsp;&nbsp;下单时间：{$v.ordertime}</th></tr>
-            <tr class="tr-tit"><th width="500px">图书名称</th><th width="100px">数量</th><th width="100px">单价</th><th width="100px">小计</th></tr>
-			<tr><td class="gname"><a href="{:url('goods/goods', array('id'=>$v['bookid']))}" target="_blank">{$v.bookname}</td><td class="txt-center">{$v.booknum}</td><td class='txt-center'><span>{$v.price}元</span></td><td class="txt-center"><span>{$v.booknum*$v.price}元</span></td></tr>
-            <tr><td colspan="4">收件地址：{$v.address}，收件人：{$v.username}，联系电话：{$v.tel}</td></tr>
+			<tr class="tr-tit"><th class="txt-left" colspan="3" style="color: #3498db;">订单号：{$v.orderid} &nbsp;&nbsp;&nbsp;下单时间：{$v.ordertime}</th></tr>
+            <tr><th rowspan="4"><a href="{:url('Goods/goods',array('id'=>$v['bookid']))}" target="_blank"><img src="__ROOT__/uploads/{$v.picture}"></a></th><th width="100px">图书名称</th><td class="gname" width="300px"><a href="{:url('goods/goods', array('id'=>$v['bookid']))}" target="_blank">{$v.bookname}</td></tr>
+            <tr><th width="100px">数量</th><td class="txt-center" width="300px">{$v.booknum}</td></tr>
+			<tr><th width="100px">单价</th><td class='txt-center' width="320px"><span>{$v.price}元</span></td></tr>
+            <tr class="tr-tit"><th width="100px">小计</th><td class="txt-center" width="300px"><span>{$v.booknum*$v.price}元</span></td></tr>
+            <tr><td colspan="3" style="color: #3498db;">收件地址：{$v.address}，收件人：{$v.username}，联系电话：{$v.tel}</td></tr>
     	</table>
         {/volist}
     {/if}

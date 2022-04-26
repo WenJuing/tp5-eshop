@@ -102,7 +102,7 @@ class Goods extends Controller {
             ->join('books b', 'o.bookid = b.bookid')
             ->join('users u', 'u.nickname = o.nickname')
             // ->group('orderid')
-            ->field('o.orderid,o.bookid,b.bookname,o.booknum,b.price,o.ordertime,u.address,u.tel,u.username')
+            ->field('o.orderid,o.bookid,b.bookname,o.booknum,b.price,b.picture,o.ordertime,u.address,u.tel,u.username')
             ->paginate(2);
             $this->assign('order', $order);
             return $this->fetch();
