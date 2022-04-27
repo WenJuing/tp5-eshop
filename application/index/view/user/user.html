@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我的订单 - 未来商城</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="__STATIC__/index/css/style.css"/>
+	<script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="//at.alicdn.com/t/font_1905047_vhae1rocf7.js"></script>
+</head>
+<body>
+    {include file="public/top"/} 
+    <div class="box">
+    {include file="public/header-nav"/} 
+<div class="usercenter">
+    {include file="public/menu-left"/}   
+	<div class="content left">
+		<table class="order">
+            <tr><th>昵称</th><td>{$user.nickname}</td></tr>
+            <tr><th>用户名</th><td>{$user.username}</td></tr>
+            <tr><th>密码</th><td>{$user.password}</td></tr>
+            <tr><th>电话</th><td>{$user.tel}</td></tr>
+            <tr><th>收货地址</th><td>{$user.address}</td></tr>
+    	</table>
+    </div>
+	<form method="post" id="form">
+		<input type="hidden" id="target" name="id">
+	</form>
+	<div class="clear"></div>
+</div>
+
+	<div class="footer">图书之家 &copy; 版权所有</div>
+</div>
+</body>
+</html>

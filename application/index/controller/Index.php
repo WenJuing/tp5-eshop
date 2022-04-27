@@ -1,13 +1,26 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
+use think\db;
+use app\index\model\Books as book;
+
 class Index extends Controller
 {
     public function index()
     {
-        $book = db('books');    //将books表的信息放入变量$book中
-        $data = $book->order('bookid desc')->limit(5)->select();    //select()查询，得到一个二维数组
-        $this->assign('data',$data);    //assign(模板取值的时候所使用的变量名,要传递的值)
+        // 新书发售
+        $book = db('books');
+        $new = $book->order('pubdate desc')->limit(5)->select();
+        $this->assign('new',$new);
+        // 热卖图书
+        $res = db::query('select bookid,sum(booknum) from orders group by bookid order by sum(booknum) desc');
+        for ($i = 0; $i < 5; $i++) {
+            $hot[$i] = book::get($res[$i]['bookid']);
+            $hot[$i]['sell'] = $res[$i]['sum(booknum)'];  // 增加销量属性
+            // 推荐图书
+            $hot[$i]['index'] = round(($res[0]['sum(booknum)']*100 + $hot[$i]['hot']) / $hot[$i]['price'], 2);
+    }
+        $this->assign('hot',$hot);
         return $this->fetch();
     }
     public function python()

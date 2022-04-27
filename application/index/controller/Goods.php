@@ -10,7 +10,11 @@ use think\db;
 class Goods extends Controller {
     public function goods() {
         $bookid = input('id');
+        $info = db('books')->where('bookid', $bookid)->setInc('hot', 1);  // 文字点击数
         $data = db('books')->where('bookid',$bookid)->find();
+        $res = db::query("select sum(booknum) from orders where bookid='$bookid'");
+        $data['sell'] = $res[0]['sum(booknum)'];
+        $data['index'] = round(($res[0]['sum(booknum)']*100 + $data['hot']) / $data['price'], 2);
         $this->assign('data',$data);
         return $this->fetch();
     }
@@ -99,9 +103,9 @@ class Goods extends Controller {
             $nickname = session::get('nickname');
             $order = Db('orders')->alias('o')
             ->where('o.nickname', '=', $nickname)
+            ->order('ordertime desc')  // 根据时间降序排序
             ->join('books b', 'o.bookid = b.bookid')
             ->join('users u', 'u.nickname = o.nickname')
-            // ->group('orderid')
             ->field('o.orderid,o.bookid,b.bookname,o.booknum,b.price,b.picture,o.ordertime,u.address,u.tel,u.username')
             ->paginate(2);
             $this->assign('order', $order);

@@ -5,6 +5,8 @@
 	<title>图书之家 - 后台管理系统</title>
 	<link rel="stylesheet" href="__STATIC__/admin/css/style.css"/>
 	<script src="__STATIC__/admin/js/jquery.min.js"></script>
+    <!-- 引入EChart插件 -->
+    <script src="__STATIC__/extends/echarts-master/dist/echarts.min.js"></script>
 </head>
 <body>
 {include file="public/top"/}
@@ -12,19 +14,61 @@
     {include file="public/left"/}
 	<div class="content">
 		<div class="item"><div class="title">后台首页</div>
-<dl class="bordered">
-	<dt>欢迎访问</dt>
-	<dd>欢迎进入图书之家后台！请从左侧选择一个操作。</dd>
-	<dd></dd>
-</dl>
-<dl class="bordered">
-	<dt>系统相关信息</dt>
-	<dd>管理员人数：999</dd>
-	<dd>用户人数：999</dd>
-	<dd>商品件数：999</dd>
-	<dd>今日流水：2M</dd>
-	<dd>总流水：30秒</dd>
-</dl></div>
+        <dl class="bordered">
+        	<dt>欢迎访问</dt>
+        	<dd>欢迎进入图书之家后台！请从左侧选择一个操作。</dd>
+        	<dd></dd>
+        </dl>
+        <div class="bordered left-content left">
+        	<dt>平台相关信息</dt>
+        	<dd>管理员人数：{$data.admin_sum}</dd>
+        	<dd>用户人数：{$data.user_sum}</dd>
+        	<dd>商品件数：{$data.book_sum}</dd>
+        	<dd>今日流水：{$data.today_income}元</dd>
+        	<dd>总流水：{$data.all_income}元</dd>
+        </div>
+        <div class="bordered right-content left">
+        	<dt>近一周平台每日流水</dt>
+            <div id="chart" class="chart"></div>
+            <script>
+                var myChart = echarts.init(document.getElementById('chart'));
+                // 指定图表的配置项和数据
+                var option = {
+                    tooltip: {},
+                    // legend: {
+                    //     data:['流水 单位（元）'],
+                    //     y:'bottom',
+                    // },
+                    xAxis: {
+                        name: '日期',
+                        data: {$date},
+                    },
+                    yAxis: {
+                        name: '金额 单位（元）',
+
+                    },
+                    series: [{
+                        name: '流水 单位（元）',
+                        type: 'line',
+                        data:{$income},
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true, //开启显示
+                                    position: 'top', //在上方显示
+                                    textStyle: { //数值样式
+                                        color: 'black',
+                                        fontSize: 12
+                                    }
+                                }
+                            }
+                        },
+                }]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
+        </div>
 	</div>
 </div>
 <script>
