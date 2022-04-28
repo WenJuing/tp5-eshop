@@ -13,7 +13,11 @@ class Goods extends Controller {
         $info = db('books')->where('bookid', $bookid)->setInc('hot', 1);  // 文字点击数
         $data = db('books')->where('bookid',$bookid)->find();
         $res = db::query("select sum(booknum) from orders where bookid='$bookid'");
-        $data['sell'] = $res[0]['sum(booknum)'];
+        # 计算累计销量
+        if ($res[0]['sum(booknum)'])
+            $data['sell'] = $res[0]['sum(booknum)'];
+        else 
+            $data['sell'] = '无';
         $data['index'] = round(($res[0]['sum(booknum)']*100 + $data['hot']) / $data['price'], 2);
         $this->assign('data',$data);
         return $this->fetch();

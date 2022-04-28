@@ -21,6 +21,10 @@ class Index extends Controller
             $hot[$i]['index'] = round(($res[0]['sum(booknum)']*100 + $hot[$i]['hot']) / $hot[$i]['price'], 2);
     }
         $this->assign('hot',$hot);
+        $rec = $hot;
+        $index = array_column($hot, 'index');  // 获取index字段的所有值
+        array_multisort($index, SORT_DESC, $rec);  // 将数组$rec按$index值降序排序
+        $this->assign('rec',$rec);
         return $this->fetch();
     }
     public function python()

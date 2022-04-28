@@ -53,7 +53,7 @@
             <!--推荐图书-->
 			<div class="best win-opacity">
                 <div class="best-title">推荐图书</div>
-                {volist name='hot' id='v'}
+                {volist name='rec' id='v'}
 				<ul class="item left center">
 					<li><a href="{:url('Goods/goods',array('id'=>$v['bookid']))}" target="_blank"><img src="__ROOT__/uploads/{$v.picture}"></a></li>
 					<li class="goods">{$v.bookname}</li>

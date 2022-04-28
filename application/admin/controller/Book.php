@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 use think\Controller;
 use app\admin\Model\Book as BookModel;
+use app\admin\Model\Tempbook as tempbook;
 use think\Request;
 use think\Session;
 class Book extends Controller {
@@ -22,6 +23,8 @@ class Book extends Controller {
                 if($result) $this->success('添加成功！',url('Book/add'));
                 else $this->error('添加失败！');
             }else{
+                $tempbook = db('tempbooks')->paginate(10);
+                $this->assign('tempbook', $tempbook);
                 return $this->fetch();
             }
         }else{
