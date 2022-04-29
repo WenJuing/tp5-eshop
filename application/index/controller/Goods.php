@@ -86,6 +86,7 @@ class Goods extends Controller {
     }
     public function buy() {
         $bookid = input('id');
+        $booknum = $_POST['booknum'];
         $nickname = session::get('nickname');
         $userid = user::get(['nickname'=>$nickname])->userid;
 
@@ -94,7 +95,7 @@ class Goods extends Controller {
         $order->nickname = $nickname;
         $order->bookid = $bookid;
         $order->orderprice = book::get(['bookid'=>$bookid])->price;
-        $order->booknum = 1;
+        $order->booknum = $booknum;
         $order->ordertime = date('Y-m-d H:i:s', time());
         if ($order->save())
             return $this->success('订单已生成！', 'goods/myorder');

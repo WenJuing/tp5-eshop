@@ -18,29 +18,27 @@
 {include file="public/win-register"/}
 <div class="goodsinfo">
 	<div class="pic left">		<img src="__ROOT__/uploads/{$data.picture}" /></div>
-	<div class="info left"><h1>{$data.bookname}| 热度
-        <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-remen2"></use>
-        </svg> {$data.hot}
-    </h1>
-        
-    <table>
-		<tr><th>售价：</th><td><span class="price">￥{$data.price}</span></td></tr>	
-		<tr><th>作者：</th><td>{$data.author}</td></tr>
-		<tr><th>出版社：</th><td>{$data.press}</td></tr>
-		<tr><th>出版日期：</th><td>{$data.pubdate}</td></tr>
-		<tr><th>ISBN：</th><td>{$data.ISBN}</td></tr>
-		<tr><th>累计销量：</th><td>{$data.sell}</td></tr>	
-		<tr><th>推荐指数：</th><td>{$data.index}</td></tr>
-		<tr><th>购买数量：</th><td><input type="text"></td></tr>
-		<tr><td colspan="2" class="button"><a href="{:url('goods/buy', array('id'=>$data['bookid']))}" id="#buy">立即购买</a><a href="{:url('goods/addcart', array('id'=>$data['bookid']))}" id="#addCart">加入购物车</a></td></tr>
-		</table></div>
+	<div class="info">
+        <h1>{$data.bookname}| 热度
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-remen2"></use>
+            </svg> {$data.hot}
+        </h1>
+        <table>
+	    	<tr><th>售价：</th><td><span class="price">￥{$data.price}</span></td></tr>	
+	    	<tr><th>作者：</th><td>{$data.author}</td></tr>
+	    	<tr><th>出版社：</th><td>{$data.press}</td></tr>
+	    	<tr><th>出版日期：</th><td>{$data.pubdate}</td></tr>
+	    	<tr><th>ISBN：</th><td>{$data.ISBN}</td></tr>
+	    	<tr><th>累计销量：</th><td>{$data.sell}</td></tr>	
+	    	<tr><th>推荐指数：</th><td>{$data.index}</td></tr>
+	    	<td><td colspan="2" class="button"><a href="{:url('goods/buy', array('id'=>$data['bookid']))}" id="#buy">立即购买</a></td><td class="button"><a href="{:url('goods/addcart', array('id'=>$data['bookid']))}" id="#addCart">加入购物车</a></td></tr>
+		</table>
 		<div class="clear"></div>
 	<div class="desc left"><div class="title">商品详情</div><div class="content"><p class="nr" style="border:medium none;margin:0px;padding:0px;text-indent:28px;line-height:28px;color:rgb(88,88,88);font-family:arial, sans-serif;font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;text-transform:none;white-space:normal;word-spacing:0px;"><span style="background-color:rgb(255,255,255);">{$data.introduction}</span></p></div></div>
 	<div class="clear"></div>
 </div>
 	<div class="footer">图书之家 &copy; 版权所有</div>
-</div>
 <script src="__STATIC__/index/js/function.js"></script>
 </body>
 </html>

@@ -15,12 +15,12 @@
 <div class="list list-left auto">
     <div class="fill left">
         数据来源：当当网
-        <form method="post" enctype="multipart/form-data" action="{:url('book/add')}">
+        <form method="post" enctype="multipart/form-data" action="{:url('book/getdata')}">
             <table>
                 <tr><td>关键字</td></tr>
-                <tr><td><input type="text" name="bookname" required ></td></tr>
+                <tr><td><input type="text" name="keyword" required ></td></tr>
                 <tr><td>爬取页数</td></tr>
-                <tr><td><input type="text" name="author" required ></td></tr>
+                <tr><td><input type="text" name="page" required ></td></tr>
                 <tr><td><input type="submit" value="爬取数据" class="get"></td></tr>
         </table>
         </form> 
@@ -39,11 +39,11 @@
 <div class="list data left">
     爬取结果
 	<table class="data-table">
-		<tr><th class="t1">图书名称</th><th>作者</th><th>出版社</th><th>出版日期</th><th>原价</th><th>现价</th><th>评论数</th><th>推荐率</th></tr>
+		<tr><th class="t1" >图书名称</th><th>作者</th><th>出版社</th><th>出版日期</th><th>原价</th><th>现价</th><th>评论数</th><th>推荐率</th></tr>
         {volist name="tempbook" id="vo"}
         <tr>
-            <td class="hidden1" width="180px">{$vo['bookname']}</td>
-            <td>1</td>
+            <td class="hidden1">{$vo['bookname']}</td>
+            <td>{$vo.author}</td>
             <td>{$vo.press}</td>
             <td>{$vo['pubdate']}</td>
             <td>{$vo.origin_price}</td>

@@ -58,6 +58,7 @@ class Admin extends Controller {
             }
             $this->assign('income', json_encode($income));
             $this->assign('date', json_encode($date));
+
         return $this->fetch();
         }
         else{

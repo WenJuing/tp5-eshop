@@ -14,12 +14,15 @@
 		<div class="item"><div class="title">商品列表</div>
 <div class="list full">
 	<table>
-		<tr><th class="t1">图书名称</th><th width="12%">作者</th><th width="12%">出版社</th><th width="6%">价格</th><th width="12%">书号</th><th width="12%">出版日期</th><th width="12%">操作</th></tr>
+		<tr><th class="t1">图书名称</th><th>作者</th><th>出版社</th><th>价格</th><th>书号</th><th>出版日期</th><th>操作</th></tr>
         {volist name="data" id="vo"}
         <tr>
-            <td class="t1"><a href="{:url('index/Goods/goods',array('id'=>$vo['bookid']))}">{$vo['bookname']}</a></td>
-            <td>{$vo['author']}</td><td>{$vo.press}</td>
-            <td>{$vo['price']}</td><td>{$vo.ISBN}</td><td>{$vo.pubdate}</td>
+            <td class="hidden1" width="300px"><a href="{:url('index/Goods/goods',array('id'=>$vo['bookid']))}">{$vo['bookname']}</a></td>
+            <td width="100px">{$vo['author']}</td>
+            <td>{$vo.press}</td>
+            <td>{$vo['price']}</td>
+            <td>{$vo.ISBN}</td>
+            <td>{$vo.pubdate}</td>
             <td><a href="{:url('admin/Book/edit',array('id'=>$vo['bookid']))}">修改</a>  <a href="{:url('admin/Book/del',array('id'=>$vo['bookid']))}" class="act-del" data-id="52" onclick="return validateDel();">删除</a></td>
         </tr>
         {/volist}
